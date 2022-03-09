@@ -1,6 +1,6 @@
 ﻿using System;
 using nevermind.Pages;
-using nevermind.Globals;
+using nevermind.OpensABrowserNavigatesToWebAndAssertsSteps;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
@@ -12,7 +12,7 @@ namespace nevermind.StepDefinitions
     [Binding]
     public class OpensABrowserNavigatesToWebAndAssertsSteps
     {
-        IWebDriver driver;
+        public static IWebDriver driver;
         String Price;
 
         [Given(@"open chrome browser and navigate to (.*)")]

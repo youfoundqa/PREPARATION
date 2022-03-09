@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace nevermind.Globals
+namespace nevermind.OpensABrowserNavigatesToWebAndAssertsSteps
 {
      public enum Browser
         {

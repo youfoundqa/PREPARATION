@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace nevermind.Globals
+namespace nevermind.OpensABrowserNavigatesToWebAndAssertsSteps
 {
     class functions
     {

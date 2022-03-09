@@ -2,6 +2,7 @@
 using TechTalk.SpecFlow;
 using nevermind.Saurcedemo.HomePage;
 using OpenQA.Selenium;
+using System.Globalization;
 
 namespace nevermind.StepDefinitions
 {
@@ -9,11 +10,12 @@ namespace nevermind.StepDefinitions
     public class SaucedemoSteps
     {
         IWebDriver driver;
-        int item;
+        int Item = 0;
 
         [Given(@"username is- standard_user-(.*) and password id-(.*)")]
         public void GivenUsernameIs_Standard_UserStandard_UserAndPasswordId_Secret_SauceSecret_Sauce(string user, string pass)
         {
+            driver = OpensABrowserNavigatesToWebAndAssertsSteps.driver;
             var pageObj = new homePage(driver);
             pageObj.Username.SendKeys(user);
             pageObj.Password.SendKeys(pass);
@@ -24,27 +26,22 @@ namespace nevermind.StepDefinitions
         public void WhenSelectCheapestItemFormInventory()
         {
             var pageObj = new inventory(driver);
-            int priceWeb;
-            int t =0;
-           
-            int price = Int32.Parse(pageObj.ItemList[t].Text);
-            foreach (IWebElement i in pageObj.ItemList) 
+            Decimal Price = Decimal.Parse(pageObj.ItemList[0].Text, NumberStyles.Currency);
+            for (int i = 0; i < pageObj.ItemList.Count; i++){
+                if (Price > Decimal.Parse(pageObj.ItemList[i].Text, NumberStyles.Currency))
                 {
-                priceWeb = Int32.Parse(pageObj.ItemList[t].Text);
-                if (price < priceWeb)
-                {
-                    price = priceWeb;
-                    item = t;
+                    Price = Decimal.Parse(pageObj.ItemList[i].Text, NumberStyles.Currency);
+                    Item = i;
                 }
-                t++;
             }
+            Console.WriteLine(Price);
         }
         
         [Then(@"add item to cart")]
         public void ThenAddItemToCart()
         {
             var pageObj = new inventory(driver);
-            pageObj.AddToCardList[item].Click();
+            pageObj.AddToCardList[Item].Click();
         }
         
         [Then(@"Navigate to cart")]
