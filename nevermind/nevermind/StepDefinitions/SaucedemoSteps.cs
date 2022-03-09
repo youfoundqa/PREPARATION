@@ -34,7 +34,6 @@ namespace nevermind.StepDefinitions
                     Item = i;
                 }
             }
-            Console.WriteLine(Price);
         }
         
         [Then(@"add item to cart")]
