@@ -21,7 +21,7 @@ namespace nevermind.StepDefinitions
             var functions = new functions();
             functions.InitiateBrowser(Browser.Chrome);
             driver = functions.driver;
-            functions.driver.Url = "https://"+url;
+            functions.driver.Url = "https://" + url;
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
